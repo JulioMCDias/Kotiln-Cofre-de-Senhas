@@ -1,9 +1,11 @@
 package com.jlmcdeveloper.cofresenha.ui.splash
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.animation.AnimationUtils
 import com.jlmcdeveloper.cofresenha.R
+import com.jlmcdeveloper.cofresenha.ui.repository.RepositoryActivity
 import kotlinx.android.synthetic.main.activity_splash.*
 import org.koin.android.ext.android.inject
 
@@ -15,6 +17,15 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
         animation()
+
+        button_local.setOnClickListener {
+            startActivity(Intent(this, RepositoryActivity::class.java))
+            finish()
+        }
+        button_driver.setOnClickListener {
+            startActivity(Intent(this, RepositoryActivity::class.java))
+            finish()
+        }
     }
 
     private fun animation(){

@@ -4,4 +4,8 @@
     <string name="btn_google_driver">Google Driver</string>
     <string name="info_cofre">cofre</string>
     <string name="info_abrir_reposit">Abrir repositório</string>
+    <string name="info_password">Senha</string>
+    <string name="btn_open">Abrir</string>
+    <string name="info_reposit">Repositório:</string>
+    <string name="info_relembar_password">Relembar senha</string>
 </resources>
