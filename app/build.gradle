@@ -51,6 +51,8 @@ dependencies {
 
     // Koin for Kotlin
     implementation "org.koin:koin-core:$koin_version"
+    implementation "org.koin:koin-android:$koin_version"
+    implementation "org.koin:koin-android-viewmodel:$koin_version"
 
     // test
     testImplementation "io.mockk:mockk:1.10.0"
