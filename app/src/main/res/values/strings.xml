@@ -10,4 +10,8 @@
     <string name="info_relembar_password">Relembar senha</string>
     <string name="info_book">Cadernos</string>
     <string name="menu_logout">logout</string>
+    <string name="info_title_password">Titulo da senha</string>
+    <string name="info_description">Descrição</string>
+    <string name="info_name">Nome</string>
+    <string name="info_email">Email</string>
 </resources>
