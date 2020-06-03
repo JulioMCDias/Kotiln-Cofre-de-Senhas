@@ -22,8 +22,14 @@
         <item name="boxStrokeWidth">2dp</item>
         <item name="android:textColorHint">@color/colorWhite</item>
         <item name="passwordToggleTint">@color/colorWhite</item>
+    </style>
 
-
+    <style name="TextFieldListPassword" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="boxStrokeColor">@color/colorWhite</item>
+        <item name="counterTextColor">@color/colorWhite</item>
+        <item name="hintTextColor">@color/colorWhite</item>
+        <item name="android:textColorHint">@color/colorWhite</item>
+        <item name="passwordToggleTint">@color/colorPrimaryDark</item>
     </style>
 
 </resources>
