@@ -8,4 +8,6 @@
     <string name="btn_open">Abrir</string>
     <string name="info_reposit">Repositório:</string>
     <string name="info_relembar_password">Relembar senha</string>
+    <string name="info_book">Cadernos</string>
+    <string name="menu_logout">logout</string>
 </resources>
