@@ -14,7 +14,7 @@
         <activity android:name=".ui.listpassword.ListPasswordActivity" />
         <activity android:name=".ui.listbook.ListBookActivity" />
         <activity android:name=".ui.repository.RepositoryActivity" />
-        <activity android:name=".ui.splash.SplashActivity">
+        <activity android:name=".ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -10,10 +10,12 @@ import android.util.Log
 
 
 object OpenFileFramework {
-    private const val READ_REQUEST_CODE: Int = 42
-    private const val WRITE_REQUEST_CODE: Int = 43
-    private const val EDIT_REQUEST_CODE: Int = 44
-    private const val TAG = "TAGTest"
+    const val READ_REQUEST_CODE: Int = 42
+    const val WRITE_REQUEST_CODE: Int = 43
+    const val EDIT_REQUEST_CODE: Int = 44
+    const val TAG = "TAG OPEN FILE"
+
+    data class File(val nameFile: String, val size: String)
 
     //------------ler arquivo ------------
     fun performFileSearch(mimeType: String, activity: Activity) {
@@ -64,7 +66,7 @@ object OpenFileFramework {
 
 
     // ler metadados da leitura (name file, size)
-    fun dumpImageMetaData(uri: Uri, context: Context) {
+    fun dumpMetaData(uri: Uri, context: Context): File{
         val cursor: Cursor? = context.contentResolver.query(uri, null, null, null, null, null)
 
         cursor?.use {
@@ -72,7 +74,7 @@ object OpenFileFramework {
 
                 val displayName: String =
                     it.getString(it.getColumnIndex(OpenableColumns.DISPLAY_NAME))
-                Log.i(TAG, "Display Name: $displayName")
+                //Log.i(TAG, "Display Name: $displayName")
 
                 val sizeIndex: Int = it.getColumnIndex(OpenableColumns.SIZE)
                 val size: String = if (!it.isNull(sizeIndex)) {
@@ -80,8 +82,10 @@ object OpenFileFramework {
                 } else {
                     "Unknown"
                 }
-                Log.i(TAG, "Size: $size")
+                //Log.i(TAG, "Size: $size")
+                return File(displayName, size)
             }
         }
+        return File("Unknown","Unknown")
     }
 }

@@ -14,4 +14,7 @@
     <string name="info_description">Descrição</string>
     <string name="info_name">Nome</string>
     <string name="info_email">Email</string>
+    <string name="btn_new_reposit">Criar Repositório</string>
+    <string name="btn_save">Salvar</string>
+    <string name="campNull">Este campo é obrigatório</string>
 </resources>

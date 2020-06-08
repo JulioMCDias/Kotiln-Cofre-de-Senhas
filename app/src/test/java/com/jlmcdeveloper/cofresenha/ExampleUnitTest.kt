@@ -1,11 +1,21 @@
 package com.jlmcdeveloper.cofresenha
 
 import com.beust.klaxon.Klaxon
+import com.jlmcdeveloper.cofresenha.data.crypt.AESCrypt
 import com.jlmcdeveloper.cofresenha.data.model.Book
 import com.jlmcdeveloper.cofresenha.data.model.Password
+import org.junit.Assert.assertEquals
 import org.junit.Test
+import java.nio.charset.StandardCharsets
+import java.security.spec.KeySpec
+import java.util.*
+import javax.crypto.Cipher
+import javax.crypto.SecretKey
+import javax.crypto.SecretKeyFactory
+import javax.crypto.spec.IvParameterSpec
+import javax.crypto.spec.PBEKeySpec
+import javax.crypto.spec.SecretKeySpec
 
-import org.junit.Assert.*
 
 /**
  * Example local unit test, which will execute on the development machine (host).

@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
-
-    <data>
-        <variable
-            name="viewModel"
-            type="com.jlmcdeveloper.cofresenha.ui.splash.SplashViewModel" />
-    </data>
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_layout">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.splash.SplashActivity"
-        android:background="@drawable/background_layout">
+        android:layout_height="wrap_content"
+        tools:context=".ui.main.MainActivity">
 
 
         <ImageView
@@ -21,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/info_cofre"
-            android:layout_margin="80dp"
+            android:layout_margin="100dp"
             android:src="@drawable/ic_cofre"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -41,34 +37,33 @@
             app:layout_constraintTop_toBottomOf="@+id/image_cofre" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button_local"
+            android:id="@+id/button_open"
             style="@style/CustomTextButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginHorizontal="60dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="50dp"
             android:drawableStart="@drawable/ic_folder_local"
             android:drawableLeft="@drawable/ic_folder_local"
-            android:text="@string/btn_local"
+            android:text="@string/btn_open"
             android:paddingHorizontal="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_repository" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button_driver"
+            android:id="@+id/button_new_repository"
             style="@style/CustomTextButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="60dp"
-            android:layout_marginTop="16dp"
-            android:drawableStart="@drawable/ic_google_drive"
-            android:drawableLeft="@drawable/ic_google_drive"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginTop="20dp"
+            android:drawableStart="@drawable/ic_add_note"
+            android:drawableLeft="@drawable/ic_add_note"
             android:paddingHorizontal="20dp"
-            android:text="@string/btn_google_driver"
-            app:layout_constraintTop_toBottomOf="@+id/button_local"
-            tools:layout_editor_absoluteX="50dp" />
+            android:text="@string/btn_new_reposit"
+            app:layout_constraintTop_toBottomOf="@+id/button_open" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-</layout>
+</ScrollView>

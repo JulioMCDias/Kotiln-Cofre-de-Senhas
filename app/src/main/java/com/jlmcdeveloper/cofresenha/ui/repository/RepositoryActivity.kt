@@ -1,20 +1,33 @@
 package com.jlmcdeveloper.cofresenha.ui.repository
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.jlmcdeveloper.cofresenha.R
-import com.jlmcdeveloper.cofresenha.ui.listbook.ListBookActivity
-import kotlinx.android.synthetic.main.activity_repository.*
+import com.jlmcdeveloper.cofresenha.ui.repository.create.CreateRepositoryFragment
+import com.jlmcdeveloper.cofresenha.ui.repository.open.OpenRepositoryFragment
 
 class RepositoryActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_repository)
 
-        button_open.setOnClickListener {
-            startActivity(Intent(this, ListBookActivity::class.java))
-            finish()
-        }
+
+        if(intent.getBooleanExtra("NewRepository", true))
+            createRepositoryFragment()
+        else
+            openRepositoryFragment()
+
+
+    }
+
+    private fun createRepositoryFragment() {
+        supportFragmentManager.beginTransaction()
+            .add(R.id.fragment_repository, CreateRepositoryFragment.newInstance()).commit()
+    }
+
+    private fun openRepositoryFragment() {
+        supportFragmentManager.beginTransaction()
+            .add(R.id.fragment_repository, OpenRepositoryFragment.newInstance()).commit()
     }
 }
