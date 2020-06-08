@@ -66,7 +66,8 @@ class SafeRepository(private val helperFile: HelperFile, private val helperJson:
         }
     }
 
-    fun getListPassword(name: String){
+    fun getListPassword(name: String): List<Password>?{
+        return repository.find { it.name == name }?.passwords
 
     }
 

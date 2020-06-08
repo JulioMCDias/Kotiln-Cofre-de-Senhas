@@ -1,13 +1,9 @@
 package com.jlmcdeveloper.cofresenha.ui.listbook
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.jlmcdeveloper.cofresenha.R
-import com.jlmcdeveloper.cofresenha.data.model.Book
-import com.jlmcdeveloper.cofresenha.data.model.Password
-import com.jlmcdeveloper.cofresenha.ui.listpassword.ListPasswordActivity
 import kotlinx.android.synthetic.main.activity_list_book.*
 import org.koin.android.ext.android.inject
 
@@ -24,7 +20,7 @@ class ListBookActivity : AppCompatActivity() {
 
         // ------ update da lista -------
         viewModel.books.observe(this, Observer {
-            adapter.updateItems(ArrayList(it!!.toMutableList()))
+            adapter.updateItems(it!!.toMutableList())
         })
 
 

@@ -1,54 +1,55 @@
-package com.jlmcdeveloper.cofresenha.ui.listbook
+package com.jlmcdeveloper.cofresenha.ui.listpassword
 
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.jlmcdeveloper.cofresenha.data.model.Book
-import com.jlmcdeveloper.cofresenha.databinding.ItemCardBookBinding
+import com.jlmcdeveloper.cofresenha.data.model.Password
+import com.jlmcdeveloper.cofresenha.databinding.ItemCardPasswordBinding
+import com.jlmcdeveloper.cofresenha.ui.addpassword.AddPasswordActivity
 import com.jlmcdeveloper.cofresenha.ui.base.BaseViewHolder
-import com.jlmcdeveloper.cofresenha.ui.listpassword.ListPasswordActivity
 
-class BookAdapter(private val books: MutableList<Book> = mutableListOf()) :
+class PasswordAdapter(private val passwords: MutableList<Password> = mutableListOf()) :
     RecyclerView.Adapter<BaseViewHolder>() {
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
         val context = parent.context
         val inflater = LayoutInflater.from(context)
 
-        return BookHolder(context, ItemCardBookBinding.inflate(inflater, parent, false))
+        return PasswordHolder(context, ItemCardPasswordBinding.inflate(inflater, parent, false))
     }
 
     override fun getItemCount(): Int {
-        return books.size
+        return passwords.size
     }
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
-        holder.bind(books[position])
+        holder.bind(passwords[position])
     }
 
     //-------------- atualização da lista ---------------
-    fun updateItems(listNote: MutableList<Book>) {
-        books.clear()
-        books.addAll(listNote)
+    fun updateItems(listNote: MutableList<Password>) {
+        passwords.clear()
+        passwords.addAll(listNote)
         notifyDataSetChanged()
     }
 
 
     //====================== ViewHolder =============================
-    class BookHolder(
+    class PasswordHolder(
         private val context: Context,
-        private val binding: ItemCardBookBinding) : BaseViewHolder(binding.root) {
+        private val binding: ItemCardPasswordBinding) : BaseViewHolder(binding.root) {
 
         override fun bind(item: Any?) {
-            binding.book = item as Book?
+            binding.password = item as Password?
             binding.executePendingBindings()
 
             // ----- abrir na caderno -----
-            binding.cardBook.setOnClickListener {
-                context.startActivity(Intent(context, ListPasswordActivity::class.java)
-                    .putExtra(Book::class.java.name, (item as Book).name))
+            binding.cardPassword.setOnClickListener {
+                context.startActivity(
+                    Intent(context, AddPasswordActivity::class.java))
             }
         }
     }
