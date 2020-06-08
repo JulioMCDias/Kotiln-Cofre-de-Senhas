@@ -4,11 +4,12 @@
 
     <data>
         <variable
-            name="viewModel"
-            type="com.jlmcdeveloper.cofresenha.ui.listbook.ListBookViewModel" />
+            name="book"
+            type="com.jlmcdeveloper.cofresenha.data.model.Book" />
     </data>
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_book"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -21,7 +22,7 @@
                 android:layout_height="wrap_content"
                 android:padding="18dp"
                 android:textColor="@color/colorPrimaryDark"
-                android:text="Site"
+                android:text="@{book.name}"
                 android:textStyle="bold"
                 android:textSize="20sp"/>
 

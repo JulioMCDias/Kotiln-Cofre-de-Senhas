@@ -34,7 +34,7 @@ class SafeRepository(private val helperFile: HelperFile, private val helperJson:
     fun createPasswordRepository(password: String){
         crypt = CryptRepository(password)
         repository = listOf(
-            Book(listOf(
+            Book("site", listOf(
                 Password("asd",email = "email", password = "password"))))
         updateFile()
     }
@@ -60,11 +60,13 @@ class SafeRepository(private val helperFile: HelperFile, private val helperJson:
     //----
 
 
-    fun getListBook(){
-
+    fun getListBook(): MutableList<Book>{
+        return MutableList(repository.size) { index->
+            Book(repository[index].name, null)
+        }
     }
 
-    fun getListPassword(){
+    fun getListPassword(name: String){
 
     }
 

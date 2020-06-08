@@ -1,6 +1,7 @@
 package com.jlmcdeveloper.cofresenha.data.model
 
 data class Book(
-    val books: List<Password>
+    val name: String,
+    val books: List<Password>?
 )
 
