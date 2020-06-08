@@ -22,7 +22,7 @@ val listBookModule = module { viewModel { ListBookViewModel(get()) } }
 
 val listPasswordModule = module { viewModel { ListPasswordViewModel(get()) }}
 
-val addPasswordModule = module { viewModel { AddPasswordViewModel(get()) } }
+val addPasswordModule = module { viewModel { AddPasswordViewModel(get(), androidContext()) } }
 
 val activityModules = listOf(
     splashModule, repositoryModule, listBookModule, listPasswordModule, addPasswordModule)

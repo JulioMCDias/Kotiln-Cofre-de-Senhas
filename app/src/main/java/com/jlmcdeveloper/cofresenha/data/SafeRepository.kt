@@ -14,6 +14,7 @@ class SafeRepository(private val helperFile: HelperFile, private val helperJson:
     lateinit var fileName: String
         private set
     private lateinit var fileEncryptString: String
+    private lateinit var bookName: String
 
 
 
@@ -34,8 +35,7 @@ class SafeRepository(private val helperFile: HelperFile, private val helperJson:
     fun createPasswordRepository(password: String){
         crypt = CryptRepository(password)
         repository = listOf(
-            Book("site", listOf(
-                Password("asd",email = "email", password = "password"))))
+            Book("site"))
         updateFile()
     }
 
@@ -60,6 +60,7 @@ class SafeRepository(private val helperFile: HelperFile, private val helperJson:
     //----
 
 
+
     fun getListBook(): MutableList<Book>{
         return MutableList(repository.size) { index->
             Book(repository[index].name, null)
@@ -67,8 +68,15 @@ class SafeRepository(private val helperFile: HelperFile, private val helperJson:
     }
 
     fun getListPassword(name: String): List<Password>?{
+        bookName = name
         return repository.find { it.name == name }?.passwords
 
+    }
+
+    fun addPassword(password: Password){
+        repository.find { it.name == bookName }?.passwords?.add(password) ?:
+            mutableListOf(password)
+        updateFile()
     }
 
 }
