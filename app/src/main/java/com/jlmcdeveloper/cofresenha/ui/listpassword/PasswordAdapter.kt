@@ -5,6 +5,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.jlmcdeveloper.cofresenha.data.model.Book
 import com.jlmcdeveloper.cofresenha.data.model.Password
 import com.jlmcdeveloper.cofresenha.databinding.ItemCardPasswordBinding
 import com.jlmcdeveloper.cofresenha.ui.addpassword.AddPasswordActivity
@@ -48,8 +49,8 @@ class PasswordAdapter(private val passwords: MutableList<Password> = mutableList
 
             // ----- abrir na caderno -----
             binding.cardPassword.setOnClickListener {
-                context.startActivity(
-                    Intent(context, AddPasswordActivity::class.java))
+                context.startActivity(Intent(context, AddPasswordActivity::class.java)
+                        .putExtra(Password::class.java.name, (item as Password).title))
             }
         }
     }

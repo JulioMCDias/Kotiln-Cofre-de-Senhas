@@ -48,7 +48,7 @@ class SafeRepository(private val helperFile: HelperFile, private val helperJson:
 
 
     // ------------update file ---------------
-    private fun updateFile(){
+    fun updateFile(){
         crypt.encrypt(helperJson.repositoryForJson(repository))?.let {
             helperFile.updateRepository(uri, it)
         }
@@ -79,4 +79,7 @@ class SafeRepository(private val helperFile: HelperFile, private val helperJson:
         updateFile()
     }
 
+    fun getPassword(title: String): Password{
+        return getListPassword(bookName)!!.find { it.title == title }!!
+    }
 }

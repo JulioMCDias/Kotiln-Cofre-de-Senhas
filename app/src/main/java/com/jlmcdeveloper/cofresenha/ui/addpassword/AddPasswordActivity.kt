@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.databinding.DataBindingUtil
 import com.jlmcdeveloper.cofresenha.R
+import com.jlmcdeveloper.cofresenha.data.model.Password
 import com.jlmcdeveloper.cofresenha.databinding.ActivityAddPasswordBinding
 import org.koin.android.ext.android.inject
 
@@ -22,6 +23,9 @@ class AddPasswordActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
+
+
+        viewModel.editable(intent.getStringExtra(Password::class.java.name))
 
         viewModel.finish = {
             finish()
