@@ -8,7 +8,8 @@
     <string name="btn_open">Abrir</string>
     <string name="info_reposit">Repositório:</string>
     <string name="info_relembar_password">Relembar senha</string>
-    <string name="info_book">Cadernos</string>
+    <string name="info_books">Cadernos</string>
+    <string name="info_book">Caderno</string>
     <string name="menu_logout">logout</string>
     <string name="info_title_password">Titulo da senha</string>
     <string name="info_description">Descrição</string>
@@ -17,4 +18,7 @@
     <string name="btn_new_reposit">Criar Repositório</string>
     <string name="btn_save">Salvar</string>
     <string name="campNull">Este campo é obrigatório</string>
+    <string name="name_book">Nome do caderno</string>
+    <string name="save">salvar</string>
+    <string name="cancel">cancelar</string>
 </resources>

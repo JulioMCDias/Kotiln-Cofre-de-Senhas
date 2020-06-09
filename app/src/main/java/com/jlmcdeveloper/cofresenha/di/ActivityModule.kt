@@ -2,6 +2,7 @@ package com.jlmcdeveloper.cofresenha.di
 
 import com.jlmcdeveloper.cofresenha.data.SafeRepository
 import com.jlmcdeveloper.cofresenha.ui.addpassword.AddPasswordViewModel
+import com.jlmcdeveloper.cofresenha.ui.listbook.AlertDialogBook
 import com.jlmcdeveloper.cofresenha.ui.listbook.ListBookViewModel
 import com.jlmcdeveloper.cofresenha.ui.listpassword.ListPasswordViewModel
 import com.jlmcdeveloper.cofresenha.ui.main.MainViewModel
@@ -18,7 +19,10 @@ val repositoryModule = module {
     viewModel { OpenRepositoryViewModel(get(), androidContext()) }
 }
 
-val listBookModule = module { viewModel { ListBookViewModel(get()) } }
+val listBookModule = module {
+    viewModel { ListBookViewModel(get()) }
+    single { AlertDialogBook() }
+}
 
 val listPasswordModule = module { viewModel { ListPasswordViewModel(get()) }}
 

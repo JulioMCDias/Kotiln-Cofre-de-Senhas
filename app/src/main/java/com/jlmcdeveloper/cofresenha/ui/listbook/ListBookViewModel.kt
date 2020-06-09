@@ -12,4 +12,13 @@ class ListBookViewModel(private val repository: SafeRepository) : ViewModel() {
     fun load() {
         books.postValue(repository.getListBook())
     }
+
+    fun addBook(book: String){
+        repository.addBook(book)
+        load()
+    }
+
+    fun getBook(book: String){
+        //repository.updateBook(book)
+    }
 }

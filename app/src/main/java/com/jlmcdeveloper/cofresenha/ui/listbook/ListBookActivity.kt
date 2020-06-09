@@ -9,6 +9,7 @@ import org.koin.android.ext.android.inject
 
 class ListBookActivity : AppCompatActivity() {
     private val viewModel: ListBookViewModel by inject()
+    private val dialogBook: AlertDialogBook by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +26,14 @@ class ListBookActivity : AppCompatActivity() {
 
 
 
+
+        // ------ add novo caderno -------
         btn_list_book.setOnClickListener {
+            dialogBook.addNewBook(layoutInflater, this)
+        }
+        // ------ salvar novo caderno  -------
+        dialogBook.onClickListener = {
+            viewModel.addBook(it)
         }
     }
 
