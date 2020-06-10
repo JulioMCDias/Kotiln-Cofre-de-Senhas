@@ -7,6 +7,7 @@ import com.jlmcdeveloper.cofresenha.R
 import com.jlmcdeveloper.cofresenha.data.SafeRepository
 import com.jlmcdeveloper.cofresenha.data.model.Password
 import com.jlmcdeveloper.cofresenha.utils.validateCampEmpty
+import com.jlmcdeveloper.cofresenha.utils.validateEmail
 
 class AddPasswordViewModel(private val repository: SafeRepository, private val context: Context) : ViewModel() {
     private var edit: Password? = null
@@ -24,7 +25,8 @@ class AddPasswordViewModel(private val repository: SafeRepository, private val c
 
     fun save(){
         if (validateCampEmpty(title, errorTitle, context.getString(R.string.campNull)) and
-            validateCampEmpty(email, errorEmail, context.getString(R.string.campNull)) and
+            validateEmail(email, errorEmail, context.getString(R.string.campNull),
+                context.getString(R.string.email_valid)) and
             validateCampEmpty(password, errorPassword, context.getString(R.string.campNull))){
 
             if(edit != null){

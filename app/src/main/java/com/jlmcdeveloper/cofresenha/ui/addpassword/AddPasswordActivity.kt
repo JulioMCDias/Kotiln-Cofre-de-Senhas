@@ -14,7 +14,6 @@ class AddPasswordActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_password)
 
         val binding: ActivityAddPasswordBinding =
             DataBindingUtil.setContentView(this, R.layout.activity_add_password)

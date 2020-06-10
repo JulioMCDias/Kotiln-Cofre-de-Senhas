@@ -30,6 +30,16 @@ class PasswordAdapter(private val passwords: MutableList<Password> = mutableList
         holder.bind(passwords[position])
     }
 
+    fun removeItem(position: Int) {
+        passwords.removeAt(position)
+        notifyItemRemoved(position)
+    }
+
+    fun restoreItem(item: Password, position: Int) {
+        passwords.add(position, item)
+        notifyItemInserted(position)
+    }
+
     //-------------- atualização da lista ---------------
     fun updateItems(listNote: MutableList<Password>) {
         passwords.clear()

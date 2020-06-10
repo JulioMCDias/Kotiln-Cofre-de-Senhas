@@ -8,7 +8,7 @@ import com.jlmcdeveloper.cofresenha.data.model.Password
 
 class SafeRepository(private val helperFile: HelperFile, private val helperJson: HelperJson) {
 
-    private lateinit var crypt: CryptRepository
+    private var crypt: CryptRepository? = null
     private lateinit var uri: Uri
     private lateinit var repository: MutableList<Book>
     lateinit var fileName: String
@@ -17,6 +17,10 @@ class SafeRepository(private val helperFile: HelperFile, private val helperJson:
     private lateinit var bookName: String
 
 
+    fun logout(){
+        repository = mutableListOf()
+        crypt = null
+    }
 
     // ------- open file ------------
     fun setFile(uri: Uri, fileName: String){
@@ -34,8 +38,7 @@ class SafeRepository(private val helperFile: HelperFile, private val helperJson:
     // ------------open crypt ---------------
     fun createPasswordRepository(password: String){
         crypt = CryptRepository(password)
-        repository = mutableListOf(
-            Book("site"))
+        repository = mutableListOf()
         updateFile()
     }
 
@@ -49,13 +52,13 @@ class SafeRepository(private val helperFile: HelperFile, private val helperJson:
 
     // ------------update file ---------------
     fun updateFile(){
-        crypt.encrypt(helperJson.repositoryForJson(repository))?.let {
+        crypt?.encrypt(helperJson.repositoryForJson(repository))?.let {
             helperFile.updateRepository(uri, it)
         }
     }
 
     private fun decryptFile(){
-        repository = crypt.decrypt(fileEncryptString)?.let { helperJson.jsonForRepository(it) }!!.toMutableList()
+        repository = crypt?.decrypt(fileEncryptString)?.let { helperJson.jsonForRepository(it) }!!.toMutableList()
     }
     //----
 
@@ -82,13 +85,13 @@ class SafeRepository(private val helperFile: HelperFile, private val helperJson:
         updateFile()
     }
 
-    fun restoreItem(book: Book, position: Int){
+    fun restoreItemBook(book: Book, position: Int){
         repository.add(position, book)
         updateFile()
     }
 
 
-
+    //--------- Password -----------
     fun getListPassword(name: String): List<Password>?{
         bookName = name
         return repository.find { it.name == name }?.passwords
@@ -100,6 +103,17 @@ class SafeRepository(private val helperFile: HelperFile, private val helperJson:
             mutableListOf(password)
         updateFile()
     }
+
+    fun removeItemPassword(password: Password){
+        repository.find { it.name == bookName }?.passwords?.remove(password)
+        updateFile()
+    }
+
+    fun restoreItemPassword(password: Password, position: Int){
+        repository.find { it.name == bookName }?.passwords?.add(position, password)
+        updateFile()
+    }
+
 
     fun getPassword(title: String): Password{
         return getListPassword(bookName)!!.find { it.title == title }!!

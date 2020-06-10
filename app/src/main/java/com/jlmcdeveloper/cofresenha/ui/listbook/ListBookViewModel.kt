@@ -13,6 +13,10 @@ class ListBookViewModel(private val repository: SafeRepository) : ViewModel() {
         books.postValue(repository.getListBook())
     }
 
+    fun logout(){
+        repository.logout()
+    }
+
     fun addBook(book: String){
         repository.addBook(book)
         load()
@@ -28,6 +32,6 @@ class ListBookViewModel(private val repository: SafeRepository) : ViewModel() {
     }
 
     fun restoreItem(book: Book, position: Int){
-        repository.restoreItem(book, position)
+        repository.restoreItemBook(book, position)
     }
 }

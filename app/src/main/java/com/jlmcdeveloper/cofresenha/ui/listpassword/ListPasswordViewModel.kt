@@ -12,4 +12,12 @@ class ListPasswordViewModel(private val repository: SafeRepository) : ViewModel(
     fun load(book: String) {
         passwords.postValue(repository.getListPassword(book)!!.toMutableList())
     }
+
+    fun removeItem(password: Password){
+        repository.removeItemPassword(password)
+    }
+
+    fun restoreItem(password: Password, position: Int){
+        repository.restoreItemPassword(password, position)
+    }
 }

@@ -32,14 +32,14 @@ class ExampleUnitTest {
     fun klaxonTest(){
 
         val repository = listOf(
-            Book(
-                listOf(
+            Book( "asd",
+                mutableListOf(
                     Password("title1", email = "name1", password = "password1"),
                     Password("title2", email = "name2", password = "password2")
                 )
             ),
-            Book(
-                listOf(
+            Book( "name",
+                mutableListOf(
                     Password("title1", email = "name1", password = "password1"),
                     Password("title2", email = "name2", password = "password2")
                 )
@@ -55,5 +55,13 @@ class ExampleUnitTest {
         val result2 = Klaxon().parseArray<Book>(result)
 
         println(result2)
+    }
+
+    @Test
+    fun kotlinTest(){
+        var name : String? = null
+        val a = name?.contains("aa")
+        println(name?.contains("aa"))
+        println(a)
     }
 }

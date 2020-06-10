@@ -1,14 +1,17 @@
 package com.jlmcdeveloper.cofresenha.ui.listbook
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.view.View
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.jlmcdeveloper.cofresenha.R
+import com.jlmcdeveloper.cofresenha.ui.main.MainActivity
 import com.jlmcdeveloper.cofresenha.utils.SwipeToDeleteCallback
 import kotlinx.android.synthetic.main.activity_list_book.*
 import org.koin.android.ext.android.inject
@@ -63,7 +66,24 @@ class ListBookActivity : AppCompatActivity() {
         viewModel.load()
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.menu_logout -> {
+                startActivity(Intent(this, MainActivity::class.java))
+                finish()
+                viewModel.logout()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
 
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.list_book, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
 
     private fun enableSwipeToDeleteAndUndo() {
        val swipeToDeleteCallback = object : SwipeToDeleteCallback(this) {
@@ -75,7 +95,7 @@ class ListBookActivity : AppCompatActivity() {
                 viewModel.removeItem(item)
                 val snackbar: Snackbar = Snackbar
                     .make(
-                        coordinatorLayout,
+                        coordinatorLayout_list_book,
                         "O item foi removido da lista.",
                         Snackbar.LENGTH_LONG
                     )
