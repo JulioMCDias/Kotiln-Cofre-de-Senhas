@@ -18,7 +18,16 @@ class ListBookViewModel(private val repository: SafeRepository) : ViewModel() {
         load()
     }
 
-    fun getBook(book: String){
-        //repository.updateBook(book)
+    fun update(book: String, pos: Int){
+        repository.updateBook(book, pos)
+        load()
+    }
+
+    fun removeItem(book: Book){
+        repository.removeItemBook(book)
+    }
+
+    fun restoreItem(book: Book, position: Int){
+        repository.restoreItem(book, position)
     }
 }

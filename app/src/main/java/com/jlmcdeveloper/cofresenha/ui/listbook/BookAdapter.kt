@@ -13,11 +13,14 @@ import com.jlmcdeveloper.cofresenha.ui.listpassword.ListPasswordActivity
 class BookAdapter(private val books: MutableList<Book> = mutableListOf()) :
     RecyclerView.Adapter<BaseViewHolder>() {
 
+    lateinit var editableBook: (Book) -> Unit
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
         val context = parent.context
         val inflater = LayoutInflater.from(context)
 
-        return BookHolder(context, ItemCardBookBinding.inflate(inflater, parent, false))
+        return BookHolder(context, ItemCardBookBinding.inflate(inflater, parent, false),
+        editableBook)
     }
 
     override fun getItemCount(): Int {
@@ -26,6 +29,17 @@ class BookAdapter(private val books: MutableList<Book> = mutableListOf()) :
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
         holder.bind(books[position])
+    }
+
+
+    fun removeItem(position: Int) {
+        books.removeAt(position)
+        notifyItemRemoved(position)
+    }
+
+    fun restoreItem(item: Book, position: Int) {
+        books.add(position, item)
+        notifyItemInserted(position)
     }
 
     //-------------- atualização da lista ---------------
@@ -39,7 +53,7 @@ class BookAdapter(private val books: MutableList<Book> = mutableListOf()) :
     //====================== ViewHolder =============================
     class BookHolder(
         private val context: Context,
-        private val binding: ItemCardBookBinding) : BaseViewHolder(binding.root) {
+        private val binding: ItemCardBookBinding, val editableBook : (Book) -> Unit) : BaseViewHolder(binding.root) {
 
         override fun bind(item: Any?) {
             binding.book = item as Book?
@@ -49,6 +63,11 @@ class BookAdapter(private val books: MutableList<Book> = mutableListOf()) :
             binding.cardBook.setOnClickListener {
                 context.startActivity(Intent(context, ListPasswordActivity::class.java)
                     .putExtra(Book::class.java.name, (item as Book).name))
+            }
+
+            binding.cardBook.setOnLongClickListener {
+                editableBook(item as Book)
+                return@setOnLongClickListener true
             }
         }
     }

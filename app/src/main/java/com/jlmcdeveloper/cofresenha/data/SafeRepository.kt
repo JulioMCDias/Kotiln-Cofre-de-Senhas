@@ -61,10 +61,10 @@ class SafeRepository(private val helperFile: HelperFile, private val helperJson:
 
 
 
+
+    // -------- book --------------
     fun getListBook(): MutableList<Book>{
-        return MutableList(repository.size) { index->
-            Book(repository[index].name, null)
-        }
+        return repository
     }
 
     fun addBook(book: String){
@@ -72,9 +72,22 @@ class SafeRepository(private val helperFile: HelperFile, private val helperJson:
         updateFile()
     }
 
-    fun getBook(book: String){
-
+    fun updateBook(book: String, pos: Int){
+        repository[pos].name = book
+        updateFile()
     }
+
+    fun removeItemBook(book: Book){
+        repository.remove(book)
+        updateFile()
+    }
+
+    fun restoreItem(book: Book, position: Int){
+        repository.add(position, book)
+        updateFile()
+    }
+
+
 
     fun getListPassword(name: String): List<Password>?{
         bookName = name

@@ -1,7 +1,7 @@
 package com.jlmcdeveloper.cofresenha.data.model
 
 data class Book(
-    val name: String,
+    var name: String,
     val passwords: MutableList<Password>? = mutableListOf()
 )
 
