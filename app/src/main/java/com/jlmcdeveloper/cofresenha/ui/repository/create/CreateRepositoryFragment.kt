@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.jlmcdeveloper.cofresenha.databinding.FragmentCreateRepositoryBinding
 import com.jlmcdeveloper.cofresenha.ui.listbook.ListBookActivity
+import com.jlmcdeveloper.cofresenha.utils.Utils
 import org.koin.android.ext.android.inject
 
 class CreateRepositoryFragment : Fragment() {
@@ -26,10 +27,16 @@ class CreateRepositoryFragment : Fragment() {
             FragmentCreateRepositoryBinding.inflate(inflater, container, false)
 
         binding.viewModel = viewModel
+        binding.lifecycleOwner = this
 
         viewModel.startActivity = {
             startActivity(Intent(activity, ListBookActivity::class.java))
             activity?.finish()
+        }
+
+        binding.buttonOpenReposi.setOnClickListener {
+            Utils.closeKeyboard(context!!, binding.textInputEditTextPassword)
+            viewModel.savePassword()
         }
 
         return binding.root

@@ -7,6 +7,7 @@ import androidx.databinding.DataBindingUtil
 import com.jlmcdeveloper.cofresenha.R
 import com.jlmcdeveloper.cofresenha.data.model.Password
 import com.jlmcdeveloper.cofresenha.databinding.ActivityAddPasswordBinding
+import com.jlmcdeveloper.cofresenha.utils.Utils
 import org.koin.android.ext.android.inject
 
 class AddPasswordActivity : AppCompatActivity() {
@@ -23,6 +24,18 @@ class AddPasswordActivity : AppCompatActivity() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
+
+        binding.btnSavePassword.setOnClickListener {
+            with(binding){
+                Utils.closeKeyboard(this@AddPasswordActivity,
+                    textInputTitle,
+                    textInputName,
+                    textInputEmail,
+                    textInputPassword,
+                    textInputDescription)
+            }
+            viewModel.save()
+        }
 
         viewModel.editable(intent.getStringExtra(Password::class.java.name))
 

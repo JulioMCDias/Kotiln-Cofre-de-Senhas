@@ -5,6 +5,7 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -38,6 +39,11 @@ class ListPasswordActivity : AppCompatActivity() {
         // ------ update da lista -------
         viewModel.passwords.observe(this, Observer {
             adapter.updateItems(it!!.toMutableList())
+        })
+
+        //----------- visibilidade ----------------
+        viewModel.loadingVisibility.observe(this, Observer {
+            layout_loading_password.visibility = if(it) View.VISIBLE else View.GONE
         })
 
 

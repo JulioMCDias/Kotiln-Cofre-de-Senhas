@@ -40,6 +40,7 @@ object OpenFileFramework {
             // Filter to only show results that can be "opened", such as
             // a file (as opposed to a list of contacts or timezones).
             addCategory(Intent.CATEGORY_OPENABLE)
+            addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION)
 
             // Create a file with the requested MIME type.
             type = mimeType

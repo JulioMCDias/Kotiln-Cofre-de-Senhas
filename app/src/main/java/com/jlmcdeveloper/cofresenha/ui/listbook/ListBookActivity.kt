@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -44,6 +45,10 @@ class ListBookActivity : AppCompatActivity() {
         })
 
 
+        //----------- visibilidade ----------------
+        viewModel.loadingVisibility.observe(this, Observer {
+            layout_loading_book.visibility = if(it) View.VISIBLE else View.GONE
+        })
 
 
         // ------ add novo caderno -------

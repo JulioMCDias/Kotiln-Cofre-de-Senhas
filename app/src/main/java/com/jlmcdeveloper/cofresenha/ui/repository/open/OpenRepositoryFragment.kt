@@ -2,13 +2,13 @@ package com.jlmcdeveloper.cofresenha.ui.repository.open
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.jlmcdeveloper.cofresenha.R
+import androidx.fragment.app.Fragment
 import com.jlmcdeveloper.cofresenha.databinding.FragmentOpenRepositoryBinding
 import com.jlmcdeveloper.cofresenha.ui.listbook.ListBookActivity
+import com.jlmcdeveloper.cofresenha.utils.Utils
 import org.koin.android.ext.android.inject
 
 class OpenRepositoryFragment : Fragment() {
@@ -26,10 +26,16 @@ class OpenRepositoryFragment : Fragment() {
             FragmentOpenRepositoryBinding.inflate(inflater, container, false)
 
         binding.viewModel = viewModel
+        binding.lifecycleOwner = this
 
         viewModel.startActivity = {
             startActivity(Intent(activity, ListBookActivity::class.java))
             activity?.finish()
+        }
+
+        binding.buttonOpenReposi.setOnClickListener {
+            Utils.closeKeyboard(context!!, binding.textInputEditTextPassword)
+            viewModel.openRepository()
         }
 
         return binding.root

@@ -4,10 +4,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.jlmcdeveloper.cofresenha.data.SafeRepository
 import com.jlmcdeveloper.cofresenha.data.model.Book
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class ListBookViewModel(private val repository: SafeRepository) : ViewModel() {
     var books = MutableLiveData<MutableList<Book>>()
 
+    val loadingVisibility = MutableLiveData(false)
 
     fun load() {
         books.postValue(repository.getListBook())
@@ -18,20 +21,36 @@ class ListBookViewModel(private val repository: SafeRepository) : ViewModel() {
     }
 
     fun addBook(book: String){
-        repository.addBook(book)
-        load()
+        GlobalScope.launch {
+            loadingVisibility.postValue(true)
+            repository.addBook(book)
+            load()
+            loadingVisibility.postValue(false)
+        }
     }
 
     fun update(book: String, pos: Int){
-        repository.updateBook(book, pos)
-        load()
+        GlobalScope.launch {
+            loadingVisibility.postValue(true)
+            repository.updateBook(book, pos)
+            load()
+            loadingVisibility.postValue(false)
+        }
     }
 
     fun removeItem(book: Book){
-        repository.removeItemBook(book)
+        GlobalScope.launch {
+            loadingVisibility.postValue(true)
+            repository.removeItemBook(book)
+            loadingVisibility.postValue(false)
+        }
     }
 
     fun restoreItem(book: Book, position: Int){
-        repository.restoreItemBook(book, position)
+        GlobalScope.launch {
+            loadingVisibility.postValue(true)
+            repository.restoreItemBook(book, position)
+            loadingVisibility.postValue(false)
+        }
     }
 }

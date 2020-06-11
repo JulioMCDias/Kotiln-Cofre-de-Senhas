@@ -1,4 +1,4 @@
 package com.jlmcdeveloper.cofresenha.data
 
-const val mimeType = "*/cryp"
-const val fileNameRepository = "repository"
+const val mimeType = "text/cryp"
+const val fileNameRepository = "repository.cryp"

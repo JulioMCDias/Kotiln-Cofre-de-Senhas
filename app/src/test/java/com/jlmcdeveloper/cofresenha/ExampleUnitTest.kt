@@ -1,20 +1,15 @@
 package com.jlmcdeveloper.cofresenha
 
+import androidx.lifecycle.liveData
 import com.beust.klaxon.Klaxon
-import com.jlmcdeveloper.cofresenha.data.crypt.AESCrypt
 import com.jlmcdeveloper.cofresenha.data.model.Book
 import com.jlmcdeveloper.cofresenha.data.model.Password
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.junit.Assert.assertEquals
 import org.junit.Test
-import java.nio.charset.StandardCharsets
-import java.security.spec.KeySpec
-import java.util.*
-import javax.crypto.Cipher
-import javax.crypto.SecretKey
-import javax.crypto.SecretKeyFactory
-import javax.crypto.spec.IvParameterSpec
-import javax.crypto.spec.PBEKeySpec
-import javax.crypto.spec.SecretKeySpec
 
 
 /**
@@ -59,9 +54,16 @@ class ExampleUnitTest {
 
     @Test
     fun kotlinTest(){
-        var name : String? = null
-        val a = name?.contains("aa")
-        println(name?.contains("aa"))
-        println(a)
+        GlobalScope.launch {
+            val test = string().await()
+            println(test)
+        }
+        println("aqui")
+        Thread.sleep(2000)
+    }
+
+    fun string() = GlobalScope.async{
+
+         "asd"
     }
 }
