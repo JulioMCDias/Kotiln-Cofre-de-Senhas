@@ -40,9 +40,7 @@ object AESCrypt {
             val decryptedByteValue: ByteArray = cipher.doFinal(decryptedValue64)
             String(decryptedByteValue, UTF_8)
         } catch (e: Exception) {
-            throw RuntimeException(
-                "Error occured while decrypting data", e
-            )
+            null
         }
     }
 

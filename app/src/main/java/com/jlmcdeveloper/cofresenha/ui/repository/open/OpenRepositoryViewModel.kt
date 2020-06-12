@@ -22,15 +22,18 @@ class OpenRepositoryViewModel(private val repository: SafeRepository,
 
 
     lateinit var startActivity: () -> Unit
+    lateinit var error: () -> Unit
 
     fun openRepository(){
         loadingVisibility.postValue(true)
         if(validateCampEmpty(editPassword, passwordError, context.getString(R.string.campNull))){
 
             GlobalScope.launch {
-                editPassword.value?.let { repository.setPasswordRepository(it) }
+                editPassword.value?.let {
+                    if(repository.setPasswordRepository(it)) startActivity()
+                    else error()
+                }
                 loadingVisibility.postValue(false)
-                startActivity()
             }
         }else
             loadingVisibility.postValue(false)

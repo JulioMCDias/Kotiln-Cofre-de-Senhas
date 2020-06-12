@@ -43,9 +43,9 @@ class SafeRepository(private val helperFile: HelperFile, private val helperJson:
     }
 
 
-    fun setPasswordRepository(password: String){
+    fun setPasswordRepository(password: String): Boolean{
         crypt = CryptRepository(password)
-        decryptFile()
+        return decryptFile()
     }
     //----
 
@@ -57,8 +57,14 @@ class SafeRepository(private val helperFile: HelperFile, private val helperJson:
         }
     }
 
-    private fun decryptFile(){
-        repository = crypt?.decrypt(fileEncryptString)?.let { helperJson.jsonForRepository(it) }!!.toMutableList()
+    private fun decryptFile(): Boolean{
+        val decrypt = crypt?.decrypt(fileEncryptString)
+        return if(decrypt != null) {
+            repository = helperJson.jsonForRepository(decrypt)!!.toMutableList()
+            true
+        }else
+            false
+
     }
     //----
 
